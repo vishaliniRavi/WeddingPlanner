@@ -73,15 +73,17 @@ session.setAttribute("booking", myService);
 		
 		<button type="submit">
 			remove</button>
+			
 		
 	</form>
-		
-		<%} %>
-		<form action="serviceBooking" method="post">
+	<form action="serviceBooking" method="post">
 		<button type="submit">
 			book</button>
 	    </form>
 			
+		
+		<%} %>
+		
 		
 </body>
 </html>

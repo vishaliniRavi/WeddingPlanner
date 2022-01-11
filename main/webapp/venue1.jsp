@@ -117,7 +117,7 @@ text-align:center;
 
     <form action="" method="post">
    
-    <img src="<%=venue.getVenueImages()%>" alt="hall"><br>
+    <img src="images/<%=venue.getVenueImages()%>" alt="hall"><br>
      <div class=venue>
              <h1> <%=venue.getVenueName() %></h1>
                      <pre><i class="fas fa-map-marker-alt"></i> <%=venue.getVenueArea()%>,<%=venue.getVenueCity() %>   <i class="fas fa-hotel"></i> <%=venue.getVenueType() %></pre>

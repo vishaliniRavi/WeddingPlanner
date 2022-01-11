@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>admin</title>
 <style>
 .sidenav{
 	margin-left: 420px;
@@ -26,7 +26,7 @@ li a{
     <div class="sidenav">
     	<h2>Welcome Admin..</h2><br><br>
          <li><a href="viewVenueAdmin.jsp">View venues</a></li><br>
-         <li><a href="Services.jsp">Add services</a></li><br>
+         <li><a href="viewServicesAdmin.jsp">Add services</a></li><br>
          <li><a href="viewUser.jsp">view users</a></li>
         
     </div>

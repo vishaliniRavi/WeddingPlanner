@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet {
 		   {
 			//user_id=validUser.getUser_id();
 			RequestDispatcher rq=request.getRequestDispatcher("admin.jsp");
+
 			 rq.forward(request, response);
 //			response.sendRedirect("index.jsp");
 //		out.println("welcome");

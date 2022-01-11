@@ -45,31 +45,46 @@ public class CancelVenueServlet extends HttpServlet {
 		//doGet(request, response);
 		HttpSession session=request.getSession();
        int userId=(int) session.getAttribute("id");
-       String venueName=(String)session.getAttribute("venueName");
+       String venueName=(String)session.getAttribute("venueBookingName");
        System.out.println(venueName);
-		Double venuePackage=(Double) session.getAttribute("venuepackage");
-		System.out.println(venuePackage);
-        BookingVenuesDaoimpl bookVenue=new BookingVenuesDaoimpl();
-        LocalDate eventDate=(LocalDate)session.getAttribute("eventdate");
+	   Double venuePackage=(Double) session.getAttribute("venueBookingPackage");
+	   System.out.println(venuePackage);
+       BookingVenuesDaoimpl bookVenue=new BookingVenuesDaoimpl();
+       LocalDate eventDate=(LocalDate)session.getAttribute("venueBookingEventDate");
+       int bookingVenueid=(int) session.getAttribute("venueBooking");
+       int days=bookVenue.validateCancelBooking(bookingVenueid);
        UserDaoimpl userdao=new UserDaoimpl();
+       if(days>0) {
+    	   
        int walletBalance=0;
 		walletBalance=userdao.walletbal(userId);
-		int payWallet=(int) (walletBalance+venuePackage);
-		if(venuePackage<=walletBalance) {
-			int balance=0;
-			balance=userdao.updatewalletBalance(payWallet, userId);
-			if(balance>0) {
-				bookVenue.cancelBooking(userId,venueName);
-		         session.setAttribute("booked", "venue sucessfully booked");
+		session.setAttribute("cancelVenue",walletBalance);
+
+		int payWallet=(int) (walletBalance+(venuePackage-(venuePackage*0.2)));
+		session.setAttribute("cancelRefundVenue",payWallet);
+
+		
+		
+			int balance=userdao.updatewalletBalance(payWallet, userId);
+			
+				bookVenue.cancelBooking(userId,venueName,eventDate);
+		         session.setAttribute("cancelled", "venue sucessfully cancelled");
 		         response.sendRedirect("cancelBookingMsg.jsp");
 		         
-			}else
-	 			System.out.println("low balance");
-		}else {
-			
-		}
+			}
+		
+       else
+       {
+    	   session.setAttribute("notCancelled","Nope!You can't cancel the order" );
+    	   response.sendRedirect("CancelVenueDate.jsp");
+       }
+
+	
 
 
 	}
+		         
+		
+	}
 
-}
+

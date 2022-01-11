@@ -29,6 +29,7 @@ venue vendor name:<input type="text" name="vendorName"><br><br>
 contact number:<input type="number" name="contactNumber"><br><br>
 venue Package:<input type="number" name="venuePackage"><br><br>
 availability:<input type="text" name="availability"><br><br>
+venue Image:<input type="file" name="image"><br>
 <input type="submit" value=submit>
 </form>
 </body>

@@ -92,57 +92,47 @@
 		<servlet-name>CancelServiceServlet</servlet-name>
 		<servlet-class>com.weddingplanner.controller.CancelServiceServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>cancelService</display-name>
+		<servlet-name>cancelService</servlet-name>
+		<servlet-class>com.weddingplanner.controller.cancelService</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CancelService</display-name>
+		<servlet-name>CancelService</servlet-name>
+		<servlet-class>com.weddingplanner.controller.CancelService</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>RatingServlet</display-name>
+		<servlet-name>RatingServlet</servlet-name>
+		<servlet-class>com.weddingplanner.controller.RatingServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FilterCityServlet</display-name>
+		<servlet-name>FilterCityServlet</servlet-name>
+		<servlet-class>com.weddingplanner.controller.FilterCityServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
-		<servlet-name>AdminServlet</servlet-name>
-		<url-pattern>/AdminServlet</url-pattern>
+		<servlet-name>CancelService</servlet-name>
+		<url-pattern>/CancelService</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>ServiceServlet</servlet-name>
-		<url-pattern>/ServiceServlet</url-pattern>
+		<servlet-name>RatingServlet</servlet-name>
+		<url-pattern>/RatingServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>BookVenueServlet</servlet-name>
-		<url-pattern>/BookVenueServlet</url-pattern>
+		<servlet-name>FilterCityServlet</servlet-name>
+		<url-pattern>/FilterCityServlet</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>MyBookServlet</servlet-name>
-		<url-pattern>/MyBookServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>WelletRechargeServlet</servlet-name>
-		<url-pattern>/WelletRechargeServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>UpdateVenueServlet</servlet-name>
-		<url-pattern>/UpdateVenueServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DeleteVenue</servlet-name>
-		<url-pattern>/DeleteVenue</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>RechargeWallet</servlet-name>
-		<url-pattern>/RechargeWallet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DeleteService</servlet-name>
-		<url-pattern>/DeleteService</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>UpdateServiecServlet</servlet-name>
-		<url-pattern>/UpdateServiecServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CancelVenueServlet</servlet-name>
-		<url-pattern>/CancelVenueServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>RemoveServiceServlet</servlet-name>
-		<url-pattern>/RemoveServiceServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CancelServiceServlet</servlet-name>
-		<url-pattern>/CancelServiceServlet</url-pattern>
-	</servlet-mapping>
+	
+	
 	
 </web-app>

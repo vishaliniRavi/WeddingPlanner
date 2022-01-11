@@ -51,7 +51,7 @@ i++;
 <td> <%=viewUser.getCity()%></td>
 <td> <%=viewUser.getEmailId()%></td>
 <td> <%=viewUser.getWallet()%></td>
-<td> <a href="inactive.jsp">Delete</a>e</td>
+
 
 </tr>
 

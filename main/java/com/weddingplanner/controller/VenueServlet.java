@@ -51,7 +51,7 @@ public class VenueServlet extends HttpServlet {
 		Long contactNumber=Long.parseLong(request.getParameter("contactNumber"));
 		Double venuePackage=Double.parseDouble(request.getParameter("venuePackage"));
 		String availability=request.getParameter("availability");
-		String venueImages=request.getParameter("venueImages");
+		String venueImages=request.getParameter("image");
 		Venues venue=new Venues(venueName,venueArea,venueCity,venueType,venueVendorName,contactNumber,venuePackage,availability,venueImages);
 	    venueDao.insertVenue(venue);
 	    int venueId=venueDao.findVenueId(venueName);

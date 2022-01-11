@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>booked</title>
+<title>cancelService</title>
 <style>
 body{
     
@@ -26,13 +26,11 @@ body{
         font-size: 17px;
         margin-top: 10px;
     }
-    
-</style>
+    </style>
 </head>
 <body>
 <nav>
-     
-     <a href="viewVenues.jsp">Venues</a>
+  <a href="viewVenues.jsp">Venues</a>
         <a href="viewService.jsp">Services</a>
         <a href="">About us</a>
         <a href="">Contact us</a>
@@ -42,14 +40,13 @@ body{
         <a href="rating.jsp">Rating</a>
     </nav>
     <div class="set">
-    Your Wallet Amount:<%=session.getAttribute("venueBalance") %><br>
-    Amount deducted:<%=session.getAttribute("venueBookPackage") %><br>
-    After deduction Wallet balance:<%=session.getAttribute("venuePayBalance") %>
-    <% String una=(String) session.getAttribute("booked");%>
-          <h2><%=una%></h2>
-          <% session.removeAttribute("booked"); %>
-          <a href=index.jsp><button>Back</button></a>
-        </div>  
-
+Your Wallet Amount:<%=session.getAttribute("cancelWallet") %><br>
+   20% of amount is deducted
+    After refund Wallet balance:<%=session.getAttribute("RefundBalance") %><br>
+<% String booked=(String) session.getAttribute("serviceCancelled");%>
+          <h2><%=booked%></h2>
+          <% session.removeAttribute("serviceCancelled"); %>
+            <a href=viewService.jsp>view services</a>
+            </div>
 </body>
 </html>

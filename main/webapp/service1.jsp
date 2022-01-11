@@ -1,3 +1,5 @@
+<%@page import="com.weddingplanner.module.Ratings"%>
+<%@page import="com.weddingplanner.daoimpl.RatingsDaoimpl"%>
 <%@page import="org.apache.catalina.connector.Request"%>
 <%@page import="com.weddingplanner.module.Services"%>
 <%@page import="com.weddingplanner.daoimpl.ServicesDaoimpl"%>
@@ -7,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Book service</title>
 <style>
 body{
 margin-left:300px;
@@ -57,7 +59,7 @@ body
 	session.setAttribute("serviceId", serviceId);
 	session.setAttribute("servicePackage", servicePackage);
 	%>
-	<img src="<%=service.getServiceImages()%>" alt="hall">
+	<img src="images/<%=service.getServiceImages()%>" alt="hall">
 	<br>
 	<span>service name: <%=service.getServiceName()%>
 	</span>
@@ -67,14 +69,21 @@ body
 	<br>
 	<form action="addToService">
 	   enter the event date and add your service
-		<span><input type="date" name="date" id="date"></span>
+		<span><input type="date" name="date" id="date" required></span>
 		<%
 		session.setAttribute("serviceName", service.getServiceName());
 		%>
 
 		<button type="submit">
-			Add
+			Book
 		</button>
+	give ratings:<button type="button"><a href="ratings.jsp">Rating</a></button>
+		<%RatingsDaoimpl ratings=new RatingsDaoimpl();
+		Ratings rating=new Ratings();
+		rating.getServiceName();
+	    double rate=ratings.fetchRating(serviceName);
+		%>
+		Ratings:<%=rate %>
 	</form>
 	
 

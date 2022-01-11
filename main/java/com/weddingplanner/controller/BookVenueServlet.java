@@ -54,15 +54,17 @@ public class BookVenueServlet extends HttpServlet {
 		int userId=(int) session.getAttribute("id");
 		int venueId=(int) session.getAttribute("venueId");
 		String venuename = request.getParameter("venuename");
-		
-		int noOfGuest =Integer.parseInt( request.getParameter("noOfGuest"));
+	    int noOfGuest =Integer.parseInt( request.getParameter("noOfGuest"));
 		//String functionTiming = request.getParameter("functionTiming");
 		Double venuePackage=(Double) session.getAttribute("venuepackage");
+ 		session.setAttribute("venueBookPackage",venuePackage );
+
         LocalDate eventDate=LocalDate.parse(request.getParameter("eventDate"));
         session.setAttribute("eventdate", eventDate);
             Services service=new Services();
 	         BookingVenuesDaoimpl bookVenue=new BookingVenuesDaoimpl();
-
+	         int bookingVenueId=bookVenue.findBookingVenueId(userId, eventDate);
+             session.setAttribute("bookingVenueId", bookVenue);
 	         boolean flag = bookVenue.checkDate(venuename, eventDate);
 	         
 	        if(flag==false)
@@ -72,7 +74,10 @@ public class BookVenueServlet extends HttpServlet {
 
 		 		int walletBalance=0;
 		 		walletBalance=userdao.walletbal(userId);
+		 		session.setAttribute("venueBalance",walletBalance );
 		 		int payWallet=(int) (walletBalance-venuePackage);
+		 		session.setAttribute("venuePayBalance",payWallet );
+
 		 		if(venuePackage<=walletBalance) {
 		 			int balance=0;
 		 			balance=userdao.updatewalletBalance(payWallet, userId);
@@ -82,19 +87,25 @@ public class BookVenueServlet extends HttpServlet {
 				         session.setAttribute("booked", "venue sucessfully booked");
 				         response.sendRedirect("bookvenue2.jsp");
 				         
-		 			}else
-			 			System.out.println("low balance");
-		 		}else {
-		 			
-		 		}
-		 		
-		 		
-		 	
+				        
+					     }
+					 			 
+					
+					 		}else {
+					 			response.sendRedirect("balance.jsp");
+					 			session.setAttribute("lowBalance","Low balance!please recharge your wallet");
+					 			
+					 		}
+			       
+					}else {
+						response.sendRedirect("venueUnavailable.jsp");
+						session.setAttribute("unavailable", "This venue already booked on this date");
+					}
 		 	}
 		        
 	}
 
-	         }
+	         
 	         
 
 		

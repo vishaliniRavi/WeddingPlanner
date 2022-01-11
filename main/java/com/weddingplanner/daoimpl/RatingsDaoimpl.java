@@ -31,26 +31,23 @@ public class RatingsDaoimpl {
 			e.printStackTrace();
 		}
 	}
-	public List<Ratings> rating(){
-		 List<Ratings> ratelist=new ArrayList<Ratings>();
-
-		String viewQuery="select service_name,trunc((sum(rating)/count(rating)),3)  from  rating_details  group by service_name";
-		Connection con=ConnectionUtil.getDbConnection();
-        Ratings rating=null;
+	public double fetchRating(String serviceName) {
+		ConnectionUtil conUtil=new ConnectionUtil();
+	     Connection con=conUtil.getDbConnection();
+		String query ="select trunc(avg(rating),2) from rating_details where service_name =?";
 		try {
-			Statement stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery(viewQuery);
+			PreparedStatement pst =con.prepareStatement(query);
+			pst.setString(1,serviceName);
+			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-			    rating=new Ratings(rs.getInt(1),rs.getString(2),rs.getInt(3));
-			    ratelist.add(rating);
+				System.out.println(rs.getDouble(1));
+				return rs.getDouble(1);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return ratelist;
-		
-     
- }	
-
+		return -1;
+	}
 }

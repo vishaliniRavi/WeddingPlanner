@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.weddingplanner.daoimpl.BookingServicesDaoimpl;
 import com.weddingplanner.daoimpl.BookingVenuesDaoimpl;
+import com.weddingplanner.daoimpl.UserDaoimpl;
 import com.weddingplanner.module.BookingServices;
 import com.weddingplanner.module.BookingVenues;
 
@@ -61,21 +62,41 @@ public class addToService extends HttpServlet {
 		//LocalDate eventDat=LocalDate.parse(eventDate);
         BookingServicesDaoimpl book=new BookingServicesDaoimpl();
         boolean flag = book.checkDate(servicename, eventDate);
-        boolean flag1=book.checkService(servicename, userId);
          if(flag==false) {
+        	 
+        	 UserDaoimpl userdao=new UserDaoimpl();
+
+		 		int walletBalance=0;
+		 		walletBalance=userdao.walletbal(userId);
+		 		session.setAttribute("userWalletBalance",walletBalance );
+		 		int payWallet=(int) (walletBalance-servicePackage);
+		 		session.setAttribute("servicePayBalance",payWallet );
+
+		 		if(servicePackage<=walletBalance) {
+		 			int balance=0;
+		 			balance=userdao.updatewalletBalance(payWallet, userId);
+		 			if(balance>0) {
         	 BookingServices bookservice=new BookingServices(userId,serviceId,servicename,eventDate,servicePackage);
 
              book.bookService(bookservice);
-        	 
-         }else
-        	 System.out.println("not available");
-        	 //response.sendRedirect("serviceUnavailable");
+             response.sendRedirect("servicebook.jsp");
+			 session.setAttribute("servicebooked", "Your services are successfully booked");
+		     }
+		 			 
 		
-			
+		 		}else {
+		 			response.sendRedirect("balance.jsp");
+		 			session.setAttribute("lowBalance","Low balance!please recharge your wallet");
+		 			
+		 		}
        
+		}else {
+			response.sendRedirect("serviceUnavailable.jsp");
+			session.setAttribute("unavailable", "This service already booked on this date");
 		}
-		
+	}
+}
          
 
 
-		}
+		

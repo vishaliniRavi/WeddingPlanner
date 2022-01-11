@@ -151,7 +151,7 @@ public class BookingServicesDaoimpl implements BookingServiceDao{
 			}
 	 }
 	 public void cancelServiceBooking(int userId,String serviceName,LocalDate eventDate) {
-			String updateQuery="update booking_services set status='cancelled' where user_id=? and venue_name=? and to_char(event_date,'dd-mm-yyyy')=?";
+			String updateQuery="update booking_services set status='cancelled' where user_id=? and service_name=? and event_date=?";
 			Connection con=ConnectionUtil.getDbConnection();
 			PreparedStatement prstmt=null;
 			try {
@@ -167,24 +167,87 @@ public class BookingServicesDaoimpl implements BookingServiceDao{
 				e.printStackTrace();
 			}
 	 }
-	 public int findBookingServiceId(String serviceName,LocalDate eventDate) {
-		 String findVenue="select booking_service_id from booking_services where service_name='"+serviceName+"' and to_char(event_date,'yyyy-mm-dd')='"+eventDate+"'";
+	 public LocalDate findBookingDate(int userId) {
+		 String findVenue="select booking_Date from booking_services where user_id='"+userId+"'";
 		 Connection con=ConnectionUtil.getDbConnection();
-			int bookingServiceId=0;
+			LocalDate bookDate=null;
 			Statement stmt;
 			try {
 				stmt = con.createStatement();
 				ResultSet rs=stmt.executeQuery(findVenue);
 				if(rs.next()) {
-					bookingServiceId=rs.getInt(1);
+					bookDate=rs.getDate(1).toLocalDate();
 				}
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
 			
-		 return bookingServiceId;
+		 return bookDate;
 		 
 	 }
+	 
 	
-}
+	 public String findStatus(String serviceName,LocalDate eventDate) {
+		 String findVenue="select status from booking_services where  service_name='"+serviceName+"' and to_char(event_date,'yyyy-mm-dd')='"+eventDate+"'";
+		 Connection con=ConnectionUtil.getDbConnection();
+			String status=null;
+			Statement stmt;
+			try {
+				stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery(findVenue);
+				if(rs.next()) {
+					status=rs.getString(1);
+				}
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			
+		 return status;
+		 
+	 }
+	 
+	 public int validateCancelBooking(int serviceBookingId) {
+		 String findVenue="select floor((event_date)- to_date(sysdate)) as no_of_days from booking_services where service_booking_id='"+serviceBookingId+"'";
+		 		
+		 Connection con=ConnectionUtil.getDbConnection();
+			int noOfDays=0;
+			Statement stmt;
+			try {
+				stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery(findVenue);
+				if(rs.next()) {
+					noOfDays=rs.getInt(1);
+				}
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			
+		 return serviceBookingId;
+		 
+	}
+	 public int findBookingServiceId(int userId,LocalDate eventDate) {
+		 String findVenue="select service_booking_id from booking_services where user_id='"+userId+"' and to_char(event_date,'yyyy-mm-dd')='"+eventDate+"'";
+		 Connection con=ConnectionUtil.getDbConnection();
+			int serviceBookingId=0;
+			Statement stmt;
+			try {
+				stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery(findVenue);
+				if(rs.next()) {
+					serviceBookingId=rs.getInt(1);
+				}
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			
+		 return serviceBookingId;
+		 
+	}
+	 }
+
+
+  

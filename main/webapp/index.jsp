@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>home</title>
  <style>
     body
     {
@@ -12,7 +12,7 @@
         background-size: cover;
     }
     nav a{
-        float:right;
+        float:right;            
         text-decoration: none;
         color:white;
         padding-right: 17px;
@@ -31,7 +31,7 @@
         <a href="">Contact us</a>
         <a href="userProfile.jsp">My Profile</a>
        
-        <a href="myBooking.jsp">My booking</a>
+        <a href="MyBooking.jsp">My booking</a>
         
     </nav>
 </body>

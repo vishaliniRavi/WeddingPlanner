@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class VenuesDaoimpl implements VenuesDao {
 	 }
 	 
 	 public void insertVenue(Venues venue) {
-		 String insertQuery="insert into venue_details(venue_name,venue_area,venue_city,venue_type,venue_vendor_name,contact_number,venue_package,check_availability)values(?,?,?,?,?,?,?,?)";
+		 String insertQuery="insert into venue_details(venue_name,venue_area,venue_city,venue_type,venue_vendor_name,contact_number,venue_package,check_availability, venue_images)values(?,?,?,?,?,?,?,?,?)";
 	      ConnectionUtil conUtil=new ConnectionUtil();
 	      Connection con=conUtil.getDbConnection();
 	      try {
@@ -51,6 +52,7 @@ public class VenuesDaoimpl implements VenuesDao {
 			prstmt.setLong(6, venue.getContactNumber());
 			prstmt.setDouble(7, venue.getVenuePackage());
 			prstmt.setString(8, venue.getAvailability());
+			prstmt.setString(9, venue.getVenueImages());
 			prstmt.executeUpdate();
 			System.out.println("venues successfully added");
 		} catch (SQLException e) {
@@ -180,7 +182,8 @@ public class VenuesDaoimpl implements VenuesDao {
 	
  public List<Venues> findCity(String venueCity) {
 	 List<Venues> venuelist=new ArrayList<Venues>();
-	 String query="select * from venue_details where venue_city='"+venueCity+"'";
+	 System.out.println("helo"+venueCity);
+	 String query="select * from venue_details where lower(venue_city) like '"+venueCity+"%'";
 	 Connection con=ConnectionUtil.getDbConnection();
  	Venues venue=null;
  	try {

@@ -35,13 +35,16 @@ public class ServicesDaoimpl implements ServicesDao {
 		
 	}
 	public void insertService(Services service) {
-		String insertQuery="insert into service_details(service_name,service_package)values(?,?)";
+		String insertQuery="insert into service_details(service_name,service_package,service_images)values(?,?,?)";
 	     ConnectionUtil conUtil=new ConnectionUtil();
 	     Connection con=conUtil.getDbConnection();
 	     try {
 			PreparedStatement prstmt=con.prepareStatement(insertQuery);
 			prstmt.setString(1, service.getServiceName());
+
 			prstmt.setDouble(2, service.getServicePackage());
+			prstmt.setString(3, service.getServiceImages());
+
 			prstmt.executeUpdate();
 			System.out.println("service added successfully");
 		} catch (SQLException e) {

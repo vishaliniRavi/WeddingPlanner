@@ -28,7 +28,7 @@ nav a {
 <body>
 	<div class="main">
 		<nav>
-			hell <a href="login.jsp">Logout</a> <a href="viewVenues.jsp">Venues</a>
+			 <a href="login.jsp">Logout</a> <a href="viewVenues.jsp">Venues</a>
 			<a href="viewService.jsp">Services</a> <a href="">About us</a> <a
 				href="">Contact us</a> <a href="myBooking.jsp">My booking</a> <a
 				href="rating.jsp">Rating</a>

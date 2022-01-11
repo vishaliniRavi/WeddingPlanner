@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>profile</title>
 <style>
 #allusers table,th,tr,td{
         border: 1px solid black;

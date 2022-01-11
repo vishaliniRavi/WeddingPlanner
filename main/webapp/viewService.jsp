@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>service</title>
 <link rel="stylesheet" href="style.css">
-</head>
-<body>
- <style>
+
+
+<style>
 	img
 	{
 		height:250px;
@@ -48,7 +48,9 @@ ServicesDaoimpl serviceDaoImpl = new ServicesDaoimpl();
 List<Services> showservices ;%>
 <%showservices=serviceDaoImpl.showServices(); 
 %>
+
 <nav>
+     
      <a href="viewVenues.jsp">Venues</a>
         <a href="viewService.jsp">Services</a>
         <a href="">About us</a>
@@ -68,10 +70,10 @@ List<Services> showservices ;%>
 	   				System.out.println(service.getServiceImages());
                 	%>
                     <td>
-                        <table id="foodtable">
+                        <table>
                             <tbody>
                                 <tr>
-                                    <td><a href="service1.jsp?servicename=<%=service.getServiceName()%>"><img src="<%=service.getServiceImages()%>" alt="hall"></a></td>    
+                                    <td><a href="service1.jsp?servicename=<%=service.getServiceName()%>"><img src="images/<%=service.getServiceImages()%>" alt="hall"></a></td>    
                                     <span>Service name : <%=service.getServiceName() %></span><br>  
                                                                       
                                     </td>
@@ -89,5 +91,6 @@ List<Services> showservices ;%>
                 </tr>
 </tbody>
 </table>
+
 </body>
 </html>

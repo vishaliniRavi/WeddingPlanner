@@ -6,23 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.weddingplanner.daoimpl.ServicesDaoimpl;
-import com.weddingplanner.daoimpl.VenuesDaoimpl;
-import com.weddingplanner.module.Services;
-import com.weddingplanner.module.Venues;
+import com.weddingplanner.daoimpl.RatingsDaoimpl;
+import com.weddingplanner.module.Ratings;
 
 /**
- * Servlet implementation class ServiceServlet
+ * Servlet implementation class RatingServlet
  */
-@WebServlet("/insertServices")
-public class ServiceServlet extends HttpServlet {
+@WebServlet("/ratings")
+public class RatingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServiceServlet() {
+    public RatingServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +31,7 @@ public class ServiceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -41,17 +40,15 @@ public class ServiceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		ServicesDaoimpl serviceDao=new ServicesDaoimpl();
-		String serviceName=request.getParameter("serviceName");
-		Double servicePackage=Double.parseDouble(request.getParameter("servicePackage"));
+		HttpSession session=request.getSession();
 
-		String serviceImage=request.getParameter("image");
-		String serviceAvailability=request.getParameter("availability");
-		Services service=new Services(serviceName,servicePackage,serviceImage,serviceAvailability);
+		int userId=(int) session.getAttribute("id");
 
-		serviceDao.insertService(service);
-
-
+		String servicename = request.getParameter("venuename");
+		int  rating=Integer.parseInt(request.getParameter("rating"));
+		RatingsDaoimpl ratings =new RatingsDaoimpl();
+		Ratings giveRating=new Ratings(userId,servicename,rating);
+		ratings.insertRating(giveRating);
 	}
 
 }

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<title>bookvenue</title>
 <style>
  body
     {
@@ -80,7 +81,7 @@ input[type="submit"]{
           <label>venue Name:</label>
             <input type="text" id="name"  name="venuename" value="<%=session.getAttribute("venueName")%>"  placeholder="" required>
             <label>No.of.guest:</label>
-            <input type="number" id="number" name="noOfGuest" placeholder=""  required>
+            <input type="text" id="number" name="noOfGuest" placeholder="" pattern="[0-9]+"  required>
             <label>Event date</label>
             <input type="date"  name="eventDate" id="datefield" required>
             <input type="submit" value="Book">

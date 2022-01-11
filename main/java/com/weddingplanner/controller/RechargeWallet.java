@@ -25,10 +25,13 @@ public class RechargeWallet extends HttpServlet {
 		int userId=(int)session.getAttribute("id");
 		String email = (String) session.getAttribute("email");
 		int amount = Integer.parseInt(request.getParameter("amount"));
+		session.setAttribute("amount", amount);
 		Long cardnumber = Long.parseLong(request.getParameter("cardnumber"));
 		int cvv = Integer.parseInt(request.getParameter("cvv"));
 		UserDaoimpl userdao = new UserDaoimpl();
 		int wallet = userdao.updatewallet(amount, userId);
+		session.setAttribute("recharged", "Your Wallet is sucessfully recharged");
+        response.sendRedirect("wallet.jsp");
 		
 	}
 
