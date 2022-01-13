@@ -50,9 +50,10 @@ public class addToService extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("add service");
 		HttpSession session=request.getSession();
-		int userId=(int) session.getAttribute("id");
+		int userId=(int)session.getAttribute("id");
+		System.out.println(userId);
 		int serviceId=(int) session.getAttribute("serviceId");
-		
+		System.out.println(serviceId);
 		String servicename = (String) session.getAttribute("serviceName");
 		System.out.println(servicename);
         LocalDate eventDate=LocalDate.parse(request.getParameter("date"));

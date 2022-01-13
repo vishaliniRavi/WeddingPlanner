@@ -44,12 +44,13 @@ public class ServiceServlet extends HttpServlet {
 		ServicesDaoimpl serviceDao=new ServicesDaoimpl();
 		String serviceName=request.getParameter("serviceName");
 		Double servicePackage=Double.parseDouble(request.getParameter("servicePackage"));
-
-		String serviceImage=request.getParameter("image");
+        String serviceImage=request.getParameter("image");
 		String serviceAvailability=request.getParameter("availability");
-		Services service=new Services(serviceName,servicePackage,serviceImage,serviceAvailability);
-
-		serviceDao.insertService(service);
+		String serviceType=request.getParameter("type");
+		String serviceDescription=request.getParameter("description");
+		String serviceTypeImage=request.getParameter("serviceTypeImage");
+        Services service=new Services(serviceName,servicePackage,serviceImage,serviceAvailability,serviceType,serviceDescription,serviceTypeImage);
+        serviceDao.insertService(service);
 
 
 	}

@@ -5,10 +5,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style1.css">
 <style>
 h3{
 text-align:center;
+}
+body{
+    background-image: url("images/login.jpeg");
+    background-size:1370px 653px;
+   
 }
 </style>
 </head>
@@ -22,7 +27,7 @@ text-align:center;
            <input type="password" name="password" placeholder="" required>
            <input type="submit" value="Sumbit"><br>
             <% String log=(String) session.getAttribute("login");
-        if(log!=null)
+        if(log!=null) 
         {%>
         <h3><%=log %></h3>
         <% } %>

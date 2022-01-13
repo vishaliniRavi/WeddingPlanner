@@ -46,7 +46,7 @@
 <%!
 ServicesDaoimpl serviceDaoImpl = new ServicesDaoimpl();
 List<Services> showservices ;%>
-<%showservices=serviceDaoImpl.showServices(); 
+<%showservices=serviceDaoImpl.showServiceType(); 
 %>
 
 <nav>
@@ -67,14 +67,14 @@ List<Services> showservices ;%>
          
 				<% int count=0;
 					for(Services service: showservices){
-	   				System.out.println(service.getServiceImages());
+	   				System.out.println(service.getServiceTypeImage());
                 	%>
                     <td>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td><a href="service1.jsp?servicename=<%=service.getServiceName()%>"><img src="images/<%=service.getServiceImages()%>" alt="hall"></a></td>    
-                                    <span>Service name : <%=service.getServiceName() %></span><br>  
+                                    <td><a href="ShowService.jsp?serviceType=<%=service.getServiceType()%>"><img src="images/<%=service.getServiceTypeImage()%>" alt="hall"></a></td>    
+                                    <span>Service Type : <%=service.getServiceType() %></span><br>  
                                                                       
                                     </td>
                                 </tr>

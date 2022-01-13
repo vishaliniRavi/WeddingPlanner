@@ -28,6 +28,9 @@ li a{
          <li><a href="viewVenueAdmin.jsp">View venues</a></li><br>
          <li><a href="viewServicesAdmin.jsp">Add services</a></li><br>
          <li><a href="viewUser.jsp">view users</a></li>
+         <li><a href="ViewAllBooking.jsp">view venue Booking</a></li>
+         <li><a href="ViewServiceBooking.jsp">view service Booking</a></li>
+
         
     </div>
      

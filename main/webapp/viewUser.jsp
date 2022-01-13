@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>View User</title>
 <style>
 #allusers table,th,tr,td{
         border: 1px solid black;
@@ -51,8 +51,6 @@ i++;
 <td> <%=viewUser.getCity()%></td>
 <td> <%=viewUser.getEmailId()%></td>
 <td> <%=viewUser.getWallet()%></td>
-
-
 </tr>
 
 <%

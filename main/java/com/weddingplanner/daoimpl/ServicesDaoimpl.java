@@ -35,15 +35,17 @@ public class ServicesDaoimpl implements ServicesDao {
 		
 	}
 	public void insertService(Services service) {
-		String insertQuery="insert into service_details(service_name,service_package,service_images)values(?,?,?)";
+		String insertQuery="insert into service_details(service_name,service_package,service_images,service_type,service_description,service_type_images)values(?,?,?,?,?,?)";
 	     ConnectionUtil conUtil=new ConnectionUtil();
 	     Connection con=conUtil.getDbConnection();
 	     try {
 			PreparedStatement prstmt=con.prepareStatement(insertQuery);
 			prstmt.setString(1, service.getServiceName());
-
-			prstmt.setDouble(2, service.getServicePackage());
+            prstmt.setDouble(2, service.getServicePackage());
 			prstmt.setString(3, service.getServiceImages());
+			prstmt.setString(4, service.getServiceType());
+			prstmt.setString(5,service.getServiceDescription() );
+			prstmt.setString(6,service.getServiceTypeImage() );
 
 			prstmt.executeUpdate();
 			System.out.println("service added successfully");
@@ -216,7 +218,7 @@ public class ServicesDaoimpl implements ServicesDao {
 			ResultSet rs=stmt.executeQuery(validateQuery);
 			System.out.println("resultset");
 			while(rs.next()) {
-				 service=new Services(rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5));			
+				 service=new Services(rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));			
 				
 			}
 			
@@ -257,5 +259,69 @@ public class ServicesDaoimpl implements ServicesDao {
 				e.printStackTrace();
 			}
 	 }
+			public List<Services> showServiceType(){
+				List<Services> serviceList =new ArrayList<Services>();
+				String viewQuery="select distinct service_type,service_type_images from service_details ";
+				Connection con=ConnectionUtil.getDbConnection();
+				try {
+					Statement stmt=con.createStatement();
+					ResultSet rs=stmt.executeQuery(viewQuery);
+					while(rs.next()) {
+					Services	service=new Services(rs.getString(1),rs.getString(2));	
+					serviceList.add(service);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		     return serviceList;
+	 }
+			public List<Services> showServiceList(String serviceType){
+				List<Services> serviceList =new ArrayList<Services>();
+				String viewQuery="select * from service_details where service_type=?";
+				Connection con=ConnectionUtil.getDbConnection();
+				;
+
+				try {
+					PreparedStatement prstmt=con.prepareStatement(viewQuery);
+					prstmt.setString(1, serviceType);
+					ResultSet rs=prstmt.executeQuery();
+					while(rs.next()) {
+						Services service=new Services(rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
+;	
+					serviceList.add(service);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		     return serviceList;
+	 }
+			public List<Services> filterByPrice(Double servicePackage) {
+				 List<Services> serviceList=new ArrayList<Services>();
+				 //System.out.println("helo"+venueCity);
+				 String query="select * from service_details where service_package=?";
+				 Connection con=ConnectionUtil.getDbConnection();
+					;
+
+					try {
+						PreparedStatement prstmt=con.prepareStatement(query);
+						prstmt.setDouble(1, servicePackage);
+						ResultSet rs=prstmt.executeQuery();
+						while(rs.next()) {
+							Services service=new Services(rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
+	
+						serviceList.add(service);
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+			     return serviceList;
+		 }
+
 	 
 }

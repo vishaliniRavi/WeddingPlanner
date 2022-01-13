@@ -43,7 +43,11 @@ public class UpdateServiecServlet extends HttpServlet {
 		//doGet(request, response);
 		String serviceName=request.getParameter("serviceName");
 	    Double servicePackage=Double.parseDouble(request.getParameter("servicePackage"));
-		Services service=new Services(serviceName,servicePackage,null,null);
+	    String serviceImage=request.getParameter("serviceImage");
+	    String serviceType=request.getParameter("type");
+		String serviceDescription=request.getParameter("description");
+		String serviceTypeImage=request.getParameter("serviceTypeImage");
+		Services service=new Services(serviceName,servicePackage,serviceType,serviceDescription,serviceTypeImage,null,null);
 		ServicesDaoimpl serviceDao=new ServicesDaoimpl();
 		serviceDao.updateService(service);
 		

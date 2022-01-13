@@ -47,9 +47,10 @@ body
         <a href="myBooking.jsp">My booking</a>
         <a href="rating.jsp">Rating</a>
     </nav>
+    <form action="addToService">
 	<%!ServicesDaoimpl serviceDaoImpl = new ServicesDaoimpl();%>
 	<%
-	String serviceName = request.getParameter("servicename");
+	String serviceName = request.getParameter("serviceName");
 	session.setAttribute("serviceName", serviceName);
 
 	Services service = serviceDaoImpl.allService(serviceName);
@@ -66,8 +67,9 @@ body
 	<br>
 	<span> service package:<%=service.getServicePackage()%>
 	</span>
+	<span>service description:<%=service.getServiceDescription() %></span>
 	<br>
-	<form action="addToService">
+	
 	   enter the event date and add your service
 		<span><input type="date" name="date" id="date" required></span>
 		<%

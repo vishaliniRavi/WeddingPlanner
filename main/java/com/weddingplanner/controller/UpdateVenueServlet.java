@@ -44,7 +44,8 @@ public class UpdateVenueServlet extends HttpServlet {
 		String venueVendorName=request.getParameter("venueVendorName");
 		Long contactNumber=Long.parseLong(request.getParameter("contactNumber"));
 		Double venuePackage=Double.parseDouble(request.getParameter("venuePackage"));
-		Venues venue=new Venues(venueName,null,null,null,venueVendorName,contactNumber,venuePackage,null,null);
+		String venueImage=request.getParameter("venueImage");
+        Venues venue=new Venues(venueName,null,null,null,venueVendorName,contactNumber,venuePackage,null,venueImage);
 		VenuesDaoimpl venueDao=new VenuesDaoimpl();
 		venueDao.updateVenue(venue);
          

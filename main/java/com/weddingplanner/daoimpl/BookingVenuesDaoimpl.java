@@ -213,6 +213,71 @@ public class BookingVenuesDaoimpl implements BookingVenueDao{
 		 
 	 }
 	 
+	 public Boolean checkCancelBooking(int userId,String venueName,LocalDate eventdate) {
+		 String findVenue="select * from booking_venues where status='cancelled' and venue_name='"+venueName+"' and to_char(event_date,'yyyy-mm-dd')='"+eventdate+"'";
+		 System.out.println(findVenue);
+		 Connection con=ConnectionUtil.getDbConnection();
+			boolean flag=true;
+			Statement stmt;
+			try {
+				stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery(findVenue);
+				if(rs.next()) {
+					System.out.println("hlo"+rs.getString(4));
+					BookingVenues venue=new BookingVenues(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getDate(7).toLocalDate(),rs.getDouble(8));
+					
+				}
+				else {
+					flag=false;
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		return flag;
+		
+	}
+	 
+	 public List<BookingVenues> userVenueBooking(int userId){
+			List<BookingVenues> venueList =new ArrayList<BookingVenues>();
+			String viewQuery="select * from Booking_venues";
+			Connection con=ConnectionUtil.getDbConnection();
+			try {
+				Statement stmt=con.createStatement();
+				ResultSet rs=stmt.executeQuery(viewQuery);
+				while(rs.next()) {
+					BookingVenues venue=new BookingVenues(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getDate(7).toLocalDate(),rs.getDouble(8));
+				venueList.add(venue);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	     return venueList;
+		}
+	 
+	 
+	 public List<BookingVenues> allBookings(){
+			List<BookingVenues> venueList =new ArrayList<BookingVenues>();
+			String viewQuery="select * from Booking_venues";
+			Connection con=ConnectionUtil.getDbConnection();
+			try {
+				Statement stmt=con.createStatement();
+				ResultSet rs=stmt.executeQuery(viewQuery);
+				while(rs.next()) {
+					BookingVenues venue=new BookingVenues(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getDate(6).toLocalDate(),rs.getDate(7).toLocalDate(),rs.getDouble(8),rs.getString(9));
+				venueList.add(venue);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	     return venueList;
+		}
 	 
 
    	

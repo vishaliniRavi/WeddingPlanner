@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="style.css">
+<title>venues</title>
+<link rel="stylesheet" href="style1.css">
 <script src="https://kit.fontawesome.com/ae23c8822d.js" crossorigin="anonymous"></script>
 
 <style>
@@ -33,8 +33,8 @@
 </head>
 <body>
 <form action="filterCity" method="post">
-    <nav >
-     <div class="container">
+
+<nav >
       <input type="text" name="search" class="search">  
       <a  href="FilterCity.jsp"><button>search</button></a>
       <a  href="viewVenues.jsp">Venues</a>
@@ -43,7 +43,7 @@
        <a  href="">Contact us</a>
        <a  href="login.jsp">Logout</a>
         <a href="MyBooking.jsp">My booking</a>
-    </div>     
+      
    </nav>
    
  

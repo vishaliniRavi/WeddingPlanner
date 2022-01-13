@@ -78,7 +78,7 @@ public class VenuesDaoimpl implements VenuesDao {
 		}
 	 }
 	 public void updateVenue(Venues venue) {
-			String updateQuery="update venue_details set venue_vendor_name=?,contact_number=?,venue_package=? where venue_name=?";
+			String updateQuery="update venue_details set venue_vendor_name=?,contact_number=?,venue_package=?,venue_image=? where venue_name=?";
 			Connection con=ConnectionUtil.getDbConnection();
 			PreparedStatement prstmt=null;
 			try {
@@ -87,6 +87,7 @@ public class VenuesDaoimpl implements VenuesDao {
 				prstmt.setLong(2, venue.getContactNumber());
 				prstmt.setDouble(3, venue.getVenuePackage());
 				prstmt.setString(4,venue.getVenueName());
+				prstmt.setString(5, venue.getVenueImages());
 				prstmt.executeUpdate();
 				prstmt.executeUpdate("commit");
 				System.out.println("profile edited successfully");
@@ -254,7 +255,6 @@ public void updateVenue(String venueVendorName, long contactNumber, double venue
 	// TODO Auto-generated method stub
 	
 }
-
 
  
 	 

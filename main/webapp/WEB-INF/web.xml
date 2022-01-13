@@ -120,6 +120,20 @@
 		<servlet-name>FilterCityServlet</servlet-name>
 		<servlet-class>com.weddingplanner.controller.FilterCityServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FilterByServlet</display-name>
+		<servlet-name>FilterByServlet</servlet-name>
+		<servlet-class>com.weddingplanner.controller.FilterByServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>InactiveUserServlet</display-name>
+		<servlet-name>InactiveUserServlet</servlet-name>
+		<servlet-class>com.weddingplanner.controller.InactiveUserServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CancelService</servlet-name>
 		<url-pattern>/CancelService</url-pattern>
@@ -131,6 +145,14 @@
 	<servlet-mapping>
 		<servlet-name>FilterCityServlet</servlet-name>
 		<url-pattern>/FilterCityServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FilterByServlet</servlet-name>
+		<url-pattern>/FilterByServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InactiveUserServlet</servlet-name>
+		<url-pattern>/InactiveUserServlet</url-pattern>
 	</servlet-mapping>
 	
 	

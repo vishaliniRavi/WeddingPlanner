@@ -54,9 +54,10 @@ public class CancelService extends HttpServlet {
 		Double servicePackage=(Double) session.getAttribute("servicePackageName");
 	       int bookingServiceid=(int) session.getAttribute("serviceBooking");
 	       System.out.println(bookingServiceid);
-
+	       boolean flag=book.checkCancelServiceBooking(userId, servicename, eventDate);
+   
 	    int days=book.validateCancelBooking(bookingServiceid);
-
+        if(flag==false) {
 		if(days>0) {
 		int walletBalance=0;
 		walletBalance=userdao.walletbal(userId);
@@ -78,6 +79,11 @@ public class CancelService extends HttpServlet {
 	    	   session.setAttribute("notCancelled","Nope!You can't cancel the order" );
 	    	   response.sendRedirect("CancelVenueDate.jsp");
 	       }
+        }else {
+        	session.setAttribute("dateCancelled","You can't cancel the order ! You already cancel this order" );
+     	   response.sendRedirect("CancelDate.jsp");
+     	   
+        }
 	}
 	
 		

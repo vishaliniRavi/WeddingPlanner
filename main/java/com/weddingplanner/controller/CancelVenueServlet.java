@@ -54,6 +54,8 @@ public class CancelVenueServlet extends HttpServlet {
        int bookingVenueid=(int) session.getAttribute("venueBooking");
        int days=bookVenue.validateCancelBooking(bookingVenueid);
        UserDaoimpl userdao=new UserDaoimpl();
+       boolean flag=bookVenue.checkCancelBooking(userId, venueName, eventDate);
+       if(flag==false) {
        if(days>0) {
     	   
        int walletBalance=0;
@@ -80,7 +82,11 @@ public class CancelVenueServlet extends HttpServlet {
        }
 
 	
-
+       }else {
+    	   session.setAttribute("dateCancelled","You can't cancel the order ! You already cancel this order" );
+    	   response.sendRedirect("CancelDate.jsp");
+    	   
+       }
 
 	}
 		         

@@ -7,6 +7,12 @@ public class Services {
 	private double servicePackage;
 	private String serviceImages;
 	private String availability;
+	private String serviceType;
+	private String serviceDescription;
+	private String serviceTypeImage;
+	
+	
+	
 	public String getServiceName() {
 		return serviceName;
 	}
@@ -22,6 +28,10 @@ public class Services {
 	public String getServiceImages() {
 		return serviceImages;
 	}
+	public Services(String serviceType) {
+		super();
+		this.serviceType = serviceType;
+	}
 	public void setServiceImages(String serviceImages) {
 		this.serviceImages = serviceImages;
 	}
@@ -30,6 +40,51 @@ public class Services {
 	}
 	public void setAvailability(String availability) {
 		this.availability = availability;
+	}
+	
+	public String getServiceType() {
+		return serviceType;
+	}
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+	public String getServiceDescription() {
+		return serviceDescription;
+	}
+	public void setServiceDescription(String serviceDescription) {
+		this.serviceDescription = serviceDescription;
+	}
+	
+	
+	
+	
+	public String getServiceTypeImage() {
+		return serviceTypeImage;
+	}
+	public void setServiceTypeImage(String serviceTypeImage) {
+		this.serviceTypeImage = serviceTypeImage;
+	}
+	
+	
+	
+	
+	
+	
+	public Services(String serviceType, String serviceTypeImage) {
+		super();
+		this.serviceType = serviceType;
+		this.serviceTypeImage = serviceTypeImage;
+	}
+	public Services(String serviceName, double servicePackage, String serviceImages, String availability,
+			String serviceType, String serviceDescription, String serviceTypeImage) {
+		super();
+		this.serviceName = serviceName;
+		this.servicePackage = servicePackage;
+		this.serviceImages = serviceImages;
+		this.availability = availability;
+		this.serviceType = serviceType;
+		this.serviceDescription = serviceDescription;
+		this.serviceTypeImage = serviceTypeImage;
 	}
 	public Services(String serviceName, double servicePackage, String serviceImages, String availability) {
 		super();

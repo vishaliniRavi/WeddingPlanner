@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -270,8 +271,42 @@ public class UserDaoimpl implements UserDao{
 			return userList;
 		}
 		
+		 public String findUserStatus(int userId) {
+			 String findVenue="select roles from  user_details where user_id='"+userId+"'";
+			 Connection con=ConnectionUtil.getDbConnection();
+				String status=null;
+				Statement stmt;
+				try {
+					stmt = con.createStatement();
+					ResultSet rs=stmt.executeQuery(findVenue);
+					if(rs.next()) {
+						status=rs.getString(1);
+					}
+				} catch (SQLException e) {
 
-
-
-	
+					e.printStackTrace();
+				}
+				
+			 return status;
+			 
+		 }
+		 public void inactiveUser(int userId) {
+				Connection con = ConnectionUtil.getDbConnection();
+				String query = "update user_details set user_role ='inactive'  where user_id = ?";
+				PreparedStatement statement;
+				int res=0;
+				try {
+					statement = con.prepareStatement(query);
+					statement.setInt(1,userId);
+					
+					 res = statement.executeUpdate();
+					 statement.executeUpdate("commit");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
+			}
+		
 }

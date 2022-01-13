@@ -247,6 +247,52 @@ public class BookingServicesDaoimpl implements BookingServiceDao{
 		 return serviceBookingId;
 		 
 	}
+	 public Boolean checkCancelServiceBooking(int userId,String serviceName,LocalDate eventdate) {
+		 String findVenue="select * from booking_services where status='cancelled' and service_name='"+serviceName+"' and to_char(event_date,'yyyy-mm-dd')='"+eventdate+"'";
+		 System.out.println(findVenue);
+		 Connection con=ConnectionUtil.getDbConnection();
+			boolean flag=true;
+			Statement stmt;
+			try {
+				stmt = con.createStatement();
+				ResultSet rs=stmt.executeQuery(findVenue);
+				if(rs.next()) {
+					System.out.println("hlo"+rs.getString(4));
+					BookingVenues venue=new BookingVenues(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getDate(7).toLocalDate(),rs.getDouble(8));
+					
+				}
+				else {
+					flag=false;
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		return flag;
+		
+	}
+	 public List<BookingServices> allServiceBooking(){
+			List<BookingServices> serviceList =new ArrayList<BookingServices>();
+			String viewQuery="select * from Booking_services";
+			Connection con=ConnectionUtil.getDbConnection();
+			try {
+				Statement stmt=con.createStatement();
+				ResultSet rs=stmt.executeQuery(viewQuery);
+				while(rs.next()) {
+				BookingServices service=new BookingServices(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getDate(6).toLocalDate(),rs.getDouble(7),rs.getString(8));
+				serviceList.add(service);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	     return serviceList;
+		}
+	 
+	 
 	 }
 
 

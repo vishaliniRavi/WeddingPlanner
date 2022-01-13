@@ -11,7 +11,12 @@
      <label>Service name</label>
      <input type="text" name="serviceName">
      <label>Service Package</label>
-     <input type="number" name="servicePackage">  
+     <input type="number" name="servicePackage">
+     <label>service Image</label>
+     <input type="file" name="serviceImage">
+     <label>service type</label>  
+     <input type="text" name="serviceType">
+     <label></label>
      <input type="submit" value= "Update">
 </form>
 </body>

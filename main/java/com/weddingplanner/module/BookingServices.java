@@ -8,8 +8,10 @@ public class BookingServices {
 	  private int userId;
 	  private int serviceId;
 	  private String serviceName;
+	  private LocalDate bookingDate;
 	  private LocalDate eventDate;
 	  private double servicePackage;
+	  private String serviceStatus;
 	public int getUserId() {
 		return userId;
 	}
@@ -28,6 +30,13 @@ public class BookingServices {
 	public void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
 	}
+	
+	public LocalDate getBookingDate() {
+		return bookingDate;
+	}
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
+	}
 	public LocalDate getEventDate() {
 		return eventDate;
 	}
@@ -39,6 +48,28 @@ public class BookingServices {
 	}
 	public void setServicePackage(double servicePackage) {
 		this.servicePackage = servicePackage;
+	}
+	
+	
+	public String getServiceStatus() {
+		return serviceStatus;
+	}
+	public void setServiceStatus(String serviceStatus) {
+		this.serviceStatus = serviceStatus;
+	}
+	
+	
+	
+	public BookingServices(int userId, int serviceId, String serviceName, LocalDate bookingDate, LocalDate eventDate,
+			double servicePackage, String serviceStatus) {
+		super();
+		this.userId = userId;
+		this.serviceId = serviceId;
+		this.serviceName = serviceName;
+		this.bookingDate = bookingDate;
+		this.eventDate = eventDate;
+		this.servicePackage = servicePackage;
+		this.serviceStatus = serviceStatus;
 	}
 	public BookingServices(int userId, int serviceId, String serviceName, LocalDate eventDate, double servicePackage) {
 		super();

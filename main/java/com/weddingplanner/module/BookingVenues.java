@@ -10,9 +10,10 @@ public class BookingVenues {
 	private int venue_id;
 	private String venueName;
 	private int noOfGuest;
-	
-	private LocalDate eventDate;
+	private LocalDate bookingDate;
+    private LocalDate eventDate;
 	private double venuePackage;
+	private String status;
 	public int getUser_id() {
 		return user_id;
 	}
@@ -49,6 +50,35 @@ public class BookingVenues {
 	}
 	public void setVenuePackage(double venuePackage) {
 		this.venuePackage = venuePackage;
+	}
+	
+	
+	
+	public LocalDate getBookingDate() {
+		return bookingDate;
+	}
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	public BookingVenues(int user_id, int venue_id, String venueName, int noOfGuest, LocalDate bookingDate,
+			LocalDate eventDate, double venuePackage, String status) {
+		super();
+		this.user_id = user_id;
+		this.venue_id = venue_id;
+		this.venueName = venueName;
+		this.noOfGuest = noOfGuest;
+		this.bookingDate = bookingDate;
+		this.eventDate = eventDate;
+		this.venuePackage = venuePackage;
+		this.status = status;
 	}
 	public BookingVenues(int user_id, int venue_id, String venueName, int noOfGuest,
 			LocalDate eventDate, double venuePackage) {
